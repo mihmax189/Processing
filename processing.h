@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cmath>
+#include <iomanip>
 
 #include "settings.h"
 
@@ -76,6 +77,9 @@ bool ProcessingWork<inType, outType>::writeData(const string & file) {
 		return false;
 	}
 	
+	if (typeid(outType) == typeid(float))
+		outstream << std::setprecision(4);
+
 	for (auto it = outData.begin(); it != outData.end(); it++)
 		outstream << *it << std::endl;
 
