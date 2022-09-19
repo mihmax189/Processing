@@ -1,16 +1,16 @@
-all: parse_file
+all: process
 
-parse_file: main.o settings.o processing.o
+process: main.o settings.o processing.o
 	g++ main.o processing.o settings.o -o parse_file
 
-main.o: main.cpp
-	g++ -std=c++17 -c main.cpp
+main.o: main.cpp processing.h settings.h
+	g++ -std=c++17 -c main.cpp processing.cpp settings.cpp
 
-processing.o: processing.cpp
-	g++ -std=c++17 -c processing.cpp
+processing.o: processing.cpp processing.h settings.h
+	g++ -std=c++17 -c processing.cpp settings.cpp
 
-settings.o: settings.cpp
+settings.o: settings.cpp settings.h
 	g++ -std=c++17 -c settings.cpp
 
 clean:
-	rm -rf *.o parse_file
+	rm -rf *.o process
