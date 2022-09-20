@@ -1,7 +1,7 @@
 all: process
 
 process: main.o settings.o processing.o
-	g++ main.o processing.o settings.o -o parse_file
+	g++ main.o processing.o settings.o -o process
 
 main.o: main.cpp processing.h settings.h
 	g++ -std=c++17 -c main.cpp processing.cpp settings.cpp
